@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SpaceX</title>
+		<link rel="stylesheet" href="styles/main.css">
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyWfLSZcaPqeTLzgBc3-Hk79TTI1ajp5I"></script> -->
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyWfLSZcaPqeTLzgBc3-Hk79TTI1ajp5I&callback=initMap&libraries=places&callback=initAutocomplete" type="text/javascript" async defer ></script> -->
+		<script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+		<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
+		<script src="scripts/main.js" defer></script>
+		<script src="scripts/cities.js" defer></script>
+
+		<!-- geocoder -->
+		<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" />
+	</head>
+	<body>
+		
+			
+			<!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"> -->
+			
+		<form>
+			<fieldset>		
+				<legend>Vul de stad in waar je naartoe wilt, om het huidige weer te zien</legend>
+				<label for="stad">Stad:</label>
+				<input type="text" name="stad" id="stad">
+				<input type="button" id="getStad" value="Krijg informatie">
+			</fieldset>
+		</form>
+		<article id="weather"></article>
+		<article id="map"></article>
+
+		<!-- <section id="weer"></section> -->
+
+
+		<!-- <section id="weer">
+			
+		</section>
+		<section id="bevolking">
+			
+		</section> 
+		<section id="horeca">
+			
+		</section> -->
+	</body>
+</html>

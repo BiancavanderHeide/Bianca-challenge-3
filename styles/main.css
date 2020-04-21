@@ -1,0 +1,113 @@
+/*
+.pac-card {
+	margin: 10px 10px 0 0;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+	background-color: #fff;
+	font-family: Roboto;
+}
+
+#pac-container {
+	padding-bottom: 12px;
+	margin-right: 12px;
+}
+
+.pac-controls {
+	display: inline-block;
+	padding: 5px 11px;
+}
+
+.pac-controls label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
+}
+
+#pac-input {
+	background-color: #fff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 400px;
+}
+
+#pac-input:focus {
+	border-color: #4d90fe;
+}
+
+#title {
+	color: #fff;
+	background-color: #4d90fe;
+	font-size: 25px;
+	font-weight: 500;
+	padding: 6px 12px;
+}
+#target {
+	width: 345px;
+}*/
+
+
+
+
+/*mobiel > zoekbalk met temperatuur na zoeken en '(niet) veilig om te landen'*/
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Roboto;
+}
+form{
+	display: block;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+#weather{
+	margin-left: 30px;
+}
+#map{
+	display: none;
+}
+
+/*tablet > kaart met zoekbalk en temperatuur na zoeken erboven*/
+@media(min-width: 768px){ 
+	form, #weather{
+		display: none;
+	}
+	#map {
+		display: block;
+		margin: 0 auto;
+		margin-top: 10px;
+		width: 80vw;
+		height: 80vh;
+		color: #111;
+		box-shadow: 10px 10px 50px -10px black;
+	}
+
+	#map img {
+		display: block;
+		margin: 2px 10px 10px 0;
+		float: left;
+		max-width: 100px;
+		border: 1px solid #333;
+		border-radius: 3px;
+	}
+}
+
+/*desktop > kaart met zoekbalk en weer met popup met temperatuur '(niet) veilig om te landen'*/
+@media(min-width: 1080px){ 
+	
+}
+
+/*groot scherm > kaart met zoekbalk en weer met popup met temperatuur en live-foto (of earth) van gezochte plaats*/
+@media(min-width: 1920px){ 
+
+}
