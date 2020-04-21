@@ -145,10 +145,11 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 
 		// get weather data and plot on map
 		map.on('load', function () {
-				myCities.forEach(function(city) {
+			myCities.forEach(function(city) {
 				var request = openWeatherMapUrl + '?' + 'appid=' + openWeatherMapUrlApiKey 
 				+ '&lon=' + city.coordinates[0] 
 				+ '&lat=' + city.coordinates[1];
+
 
 				// Get current weather based on cities' coordinates
 				fetch(request)
@@ -158,35 +159,36 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 					})
 					.then(function(response) {
 					// Then plot the weather response + icon on MapBox
-						plotImageOnMap(response.weather[0].icon, city)
+						plotImageOnMap(response.weather[0].icon, city);
 					})
 					.catch(function (error) {
 						console.log('ERROR:', error);
 					});
 					
-				});
-				// Create a popup, but don't add it to the map yet.
-				var popup = new mapboxgl.Popup({
-				    closeButton: false,
-				    closeOnClick: false
-				});
+			});
 				
-				map.on('mouseenter', 'places', function (e) {
-					map.getCanvas().style.cursor = 'pointer';
-				    var coordinates = e.myCities[0].coordinates.slice();
-				    var description = e.myCities[0].description;
-				    var name = e.myCities[0].name;
+			//Create a popup, but don't add it to the map yet.
+			var popup = new mapboxgl.Popup({
+			    closeButton: false,
+			    closeOnClick: false
+			});
+			
+			map.on('mouseenter', function (e) {
+				map.getCanvas().style.cursor = 'pointer';
+			    var coordinates = e.myCities[0].coordinates.slice();
+			    var description = e.myCities[0].description;
+			    var name = e.myCities[0].name;
 
-			    // Populate the popup and set its coordinates based on the feature found.
-			    popup.setLngLat(coordinates)
-			         .setHTML('<h3>' + name + '</h3>' +'<p>' + description + '</p>')
-			         .addTo(map);
-				});
+		    // Populate the popup and set its coordinates based on the feature found.
+		    popup.setLngLat(coordinates)
+		         .setHTML('<h3>' + name + '</h3>' +'<p>' + description + '</p>')
+		         .addTo(map);
+			});
 
-				map.on('mouseleave', 'places', function () {
-					map.getCanvas().style.cursor = '';
-				    popup.remove();
-				});
+			map.on('mouseleave', function () {
+				map.getCanvas().style.cursor = '';
+			    popup.remove();
+			});
 		});
 		
 		function plotImageOnMap(icon, city) { //zet de weerafbeeldingen op de coordinaten van myCities
@@ -216,6 +218,7 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 						"icon-size": 1.3
 					}
 				});
+
 			}
 			);
 		

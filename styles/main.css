@@ -5,6 +5,7 @@ html, body {
 	padding: 0;
 	font-family: Roboto;
 	background-color: #131862;
+	color: white;
 }
 .logo{ /*het logo staat vast en scrollt niet mee*/
 	background-color: black;
@@ -36,6 +37,21 @@ form{
 	margin-right: auto;
 	margin-bottom: 10px;
 	margin-top: 20px;
+}
+#stad{
+	width: 200px;
+	margin-left: 20px;
+	margin-right: auto;
+}
+#getStad{
+	margin-left: 60px;
+	margin-top: 10px;
+	color: white;
+	background-color: black;
+	box-shadow: 1px 1px 4px 0px white;
+	border: none;
+	width: 120px;
+	height: 25px;
 }
 #map{
 	display: none;
@@ -78,26 +94,40 @@ form{
 
 /*groot scherm > kaart met zoekbalk en weer met popup met temperatuur en live-foto (of earth) van gezochte plaats*/
 @media(min-width: 1920px){ 
+	body{
+		display: grid;
+		grid-template-columns: 50% 50%;
+		grid-template-rows: 20% 20%;
+		grid-template-areas: 
+		"kaart form"
+		"kaart popup"
+	}
 	form{
-		display: flex;
-		flex-direction: column;
-		position: relative;
-		align-items: flex-end;
-		top: 150px;
+		grid-area: form;
+		display: block;
+		/*flex-direction: column;*/
+		/*position: relative;*/
+		/*align-items: flex-end;*/
+		/*top: 10px;*/
+		/*width: 80%;*/
 	} 
 	#weather{
-		display: flex;
-		flex-direction: column;
-		position: relative;
-		align-items: flex-end;
-		top: 10%;
-		right: 10%;
-		width: auto;
-		width: 90%;
+		grid-area: popup;
+		display: block;
+		margin-right: 50px;
+		/*flex-direction: column;*/
+		/*position: relative;*/
+		/*align-items: flex-end;*/
+		/*top: 10px;*/
+		/*right: 10%;*/
+		/*width: auto;*/
+		/*width: 90%;*/
 	}
 	#map{
-		width: 50%;
-		margin: 35px;
-		position: relative;
+		grid-area: kaart;
+		/*display: none;*/
+		/*width: 50%;*/
+		/*margin: 35px;*/
+		/*position: relative;*/
 	}
 }
