@@ -1,11 +1,10 @@
 # Bianca-challenge-3
 Voor de derde en laatste challenge van Ixd & Technology 2 moest er een website geprogrammeerd worden voor de mensen die terugkomen van Mars.
 
-Ik begon met ideeen verzinnen voor deze site. Ik kwam er al snel op dat ik maps (mapbox) en openweather (weer) samen wilde voegen. 
-Alleen tijdens de les en de voorbeelden die daar werden gebruikt, moest ik iets anders verzinnen, omdat ik anders precies hetzelfde 
-zou doen als de docent in het voorbeeld had gedaan. Daarom heb ik hetzelfde idee gehouden, maar ben ik er meer en andere infomatie 
-en onderdelen aan toe te voegen. Zo heb ik gekozen om markers en popups toe te voegen met informatie erin. 
+Ik begon met ideeen verzinnen voor deze site. Ik kwam er al snel op dat ik maps (mapbox) en openweather (weer) samen wilde voegen. Alleen tijdens de les en de voorbeelden die daar werden gebruikt, moest ik iets anders verzinnen, omdat ik anders precies hetzelfde zou doen als de docent in het voorbeeld had gedaan. Daarom heb ik hetzelfde idee gehouden, maar ben ik er meer en andere infomatie en onderdelen aan toe te voegen. Zo heb ik gekozen om markers en popups toe te voegen met informatie erin. 
 
-De mobiele versie is heel eenvoudig, omdat een kaart te groot is voor het scherm, heb ik gekozen om alleen een input-balk te geven 
-waar gebruikers, na het invullen van een bestemming, informatie krijgen over de stad. Bij de tablet-versie heb ik wel de kaart laten 
-zien waar na het zoeken een marker en popup zijn te zien.
+De mobiele versie is heel eenvoudig, omdat een kaart te groot is voor het scherm, heb ik gekozen om alleen een input-balk te geven waar gebruikers, na het invullen van een bestemming, informatie krijgen over het weer in de gekozen stad. Bij de tablet-versie heb ik wel de kaart laten zien en kunnen ze nog steeds zoeken naar de temperatuur en andere belangijke informatie over het weer in een gekozen stad. De desktop-versie bestaat uit alleen een kaart, omdat er op de kaart nu ook de weerafbeeldingen in verschillende steden worden weergegeven. Ook is het de bedoeling dat er een popup komt, waarin de informatie over het weer te zien is, voor elke stad een eigen. Het lukte alleen jammer genoeg niet, omdat de popup niet werkt. Als laatste is er de versie voor grote schermen. Hier wordt de kaart aan 1 kant weergegeven en aan de andere kant weer de input-balk waar informatie over het weer in de gekozen stad wordt weergegeven.
+
+Ik heb best moeite gehad met de Javascript in deze opdracht, omdat het koppelen van die API's op meerdere manieren kan en je kan er verschillende informatie per API ophalen. Daardoor moet er goed gelinkt worden en dat ging nog wel eens mis. Ik liep vaak vast, kreeg steeds foutenmeldingen of kreeg juist geen meldingen terwijl het niet werkte. Ik heb heel veel aan internet en aan de voorbeelden in de lessen en de bestanden gehad, om inspiratie te krijgen en om me op weg te helpen. Ik vond het een moeilijke opdracht, omdat er heel veel gekoppeld moet worden in Javascript en omdat de opdracht heel 'simpel' is, waardoor ik het een beetje had onderschat. Ik heb er heel lang aan gezeten en heb veel opgezocht, maar ik kom er niet uit waarom de popup niet werkt. Ook vind ik het jammer dat ik niet het invoerveld heb gekoppeld met de kaart van MapBox, maar ik kon nergens een oplossing vinden die me zou helpen. Dus heb ik het opgelost door ze apart te doen. 
+
+Een tip als u de grootte van het browservenster aanpast, soms moet u het tussendoor opnieuw laden voordat de kaart goed wordt geladen.
