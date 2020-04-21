@@ -64,7 +64,7 @@ var x = window.matchMedia("(min-width: 768px)") //tablet > kaart met zoekbalk en
 			container: 'map',
 			style: 'mapbox://styles/mapbox/outdoors-v11',
 			center: [5.508852, 52.142480],
-			zoom: 7
+			zoom: 6.5
 		});
 
 		map.addControl(
@@ -74,68 +74,26 @@ var x = window.matchMedia("(min-width: 768px)") //tablet > kaart met zoekbalk en
 			}),
 			'top-left'
 		);
-		map.addControl(new mapboxgl.NavigationControl()); 
-		map.on('load', function () {
-			// map.addSource('places', {
-			// 	'type': 'geojson',
-			// 	'data': {
-			//     'type': 'FeatureCollection',
-			//     'features': myCities
-			//     }
-			// });
-			// //var features = myCities;
-
-			//  // Add a layer showing the places.
-			//   map.addLayer({
-			//     'id': 'places',
-			//     'type': 'symbol',
-			//     'source': 'places',
-			//     'layout': {
-			//       'icon-image': '{icon}-15',
-			//       'icon-allow-overlap': true
-			//     }
-			//   });
-
-		// Create a popup, but don't add it to the map yet.
-			// var popup = new mapboxgl.Popup({
-			//     closeButton: false,
-			//     closeOnClick: false
-			// }).set Popup(new mapbox);
-			//var myMark = document.getElementsByClassName('mapboxgl-ctrl-geocoder--input')
-			
-			// map.on('mouseenter', 'places', function (e) {
-			//     var coordinates = e.features[0].geometry.coordinates.slice();
-			//     var description = e.features[0].properties.description;
-
-			//     // Populate the popup and set its coordinates based on the feature found.
-			//     popup.setLngLat(coordinates)
-			//          .setHTML(description)
-			//          .addTo(map);
-			// });
-
-			// map.on('mouseleave', 'places', function () {
-			//     popup.remove();
-			// });
-		});
+		map.addControl(new mapboxgl.NavigationControl());
 }
 
 var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk en weer met popup met temperatuur '(niet) veilig om te landen'
 	if (x.matches) { // If media query matches
 		
-			var myCities = [
+			var myCities = [ //alle hoofdsteden van Nederland
 			  {
-			    name: 'Amsterdam',
-			    coordinates: [4.895168, 52.370216],
+			    name: 'Den Haag',
+			    coordinates: [4.288788, 52.078663],
 			    description: 'Het is mooi weer'
 			  },
 			  {
-			    name: 'Rotterdam',
-			    coordinates: [4.47917, 51.9225],
+			    name: 'Haarlem',
+			    coordinates: [4.646219, 52.387386],
 			    description: 'Het is mooi weer'
 			  },
 			  {
-			    name: 'Nijmegen',
-			    coordinates: [5.85278, 51.8425],
+			    name: 'Leeuwarden',
+			    coordinates: [5.80859, 53.20139],
 			    description: 'Het is mooi weer'
 			  },
 			  {
@@ -149,35 +107,47 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 			    description: 'Het is mooi weer'
 			  },
 			  {
-			    name: 'Enschede',
-			    coordinates: [6.89583, 52.21833],
+			    name: 'Assen',
+			    coordinates: [6.5625, 52.99667],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Zwolle',
+			    coordinates: [6.09444, 52.5125],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Lelystad',
+			    coordinates: [5.471422, 52.518536],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Arnhem',
+			    coordinates: [5.91111, 51.98],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Utrecht',
+			    coordinates: [5.104480, 52.092876],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Middelburg',
+			    coordinates: [3.610998, 51.4987962],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: '&rsquo;s-Hertogenbosch',
+			    coordinates: [5.30417, 51.69917],
 			    description: 'Het is mooi weer'
 			  },
 			];
 
 		// get weather data and plot on map
 		map.on('load', function () {
-			
-			 // myCities.forEach(function(marker){
-				// var el = document.createElement('div');
-				// el.className = 'marker';
-
-				// new mapboxgl.Marker(el)
-				// 		.setLngLat(marker.geometry.coordinates) 
-				// 		.setPopup(new mapboxgl.Popup({offset: 25})
-				// 				.setHTML('<h3>' + myCities[0].properties.name + '</h3>' +'<p>' + myCities[0].properties.description + '</p>'))
-				// 		.addTo(map);
-				// });
-
-			/*async*/ //function fetchData() {
-				//const response = await fetch('cities.js');
-			    //const data = await response.json();
-
 				myCities.forEach(function(city) {
-				// Usually you do not want to call an api multiple times, but in this case we have to
-				// because the openWeatherMap API does not allow multiple lat lon coords in one request.
 				var request = openWeatherMapUrl + '?' + 'appid=' + openWeatherMapUrlApiKey 
-				+ '&lon=' + city.coordinates[0]/*.slice()*/ 
+				+ '&lon=' + city.coordinates[0] 
 				+ '&lat=' + city.coordinates[1];
 
 				// Get current weather based on cities' coordinates
@@ -189,7 +159,6 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 					.then(function(response) {
 					// Then plot the weather response + icon on MapBox
 						plotImageOnMap(response.weather[0].icon, city)
-						//plotImageOnMap(response.main.temp, city)
 					})
 					.catch(function (error) {
 						console.log('ERROR:', error);
@@ -203,6 +172,7 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 				});
 				
 				map.on('mouseenter', 'places', function (e) {
+					map.getCanvas().style.cursor = 'pointer';
 				    var coordinates = e.myCities[0].coordinates.slice();
 				    var description = e.myCities[0].description;
 				    var name = e.myCities[0].name;
@@ -214,12 +184,12 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 				});
 
 				map.on('mouseleave', 'places', function () {
+					map.getCanvas().style.cursor = '';
 				    popup.remove();
 				});
 		});
 		
-
-		function plotImageOnMap(icon, city) {
+		function plotImageOnMap(icon, city) { //zet de weerafbeeldingen op de coordinaten van myCities
 			map.loadImage('http://openweathermap.org/img/w/' + icon + '.png',
 			function (error, image) {
 				if (error) throw error;
@@ -250,13 +220,4 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 			);
 		
 		};
-		
-		//.setPopup(new mapboxgl.Popup({offset: 25})
-				//.setHTML('<h3>' + myCities[0].properties.name + '</h3>' +'<p>' + myCities[0].properties.description + '</p>'))
-		
 };
-
-var x = window.matchMedia("(min-width: 1920px)") //groot scherm > kaart met zoekbalk en weer met popup met temperatuur en live-foto (of earth) van gezochte plaats
-	if (x.matches) { // If media query matches		
-
-}
