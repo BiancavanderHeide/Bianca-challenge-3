@@ -1,204 +1,3 @@
-// // init map
-// var myMap;
-
-// function initMap() {
-// 	// set options for map 
-// 	var mapOptions = {
-// 		center: {
-// 			lat: 52.067514882683064, 
-// 			lng: 4.3238686164587
-// 		},
-// 		zoom: 17,
-// 		//mapTypeId: 'hybrid' //dit laat de google earth view zien
-// 	};
-
-// 	// create map and add to page
-// 	myMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-// }
-
-// function initAutocomplete() {
-// 	var map = new google.maps.Map(document.getElementById('map'), {
-// 		center: {lat: 52.067514882683064, lng: 4.3238686164587},
-//         zoom: 15,	
-//         mapTypeId: 'roadmap'
-// 	});
-
-// 	// Create the search box and link it to the UI element.
-// 	var input = document.getElementById('pac-input');
-// 	var searchBox = new google.maps.places.SearchBox(input);
-// 	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-// 	// Bias the SearchBox results towards current map's viewport.
-// 	map.addListener('bounds_changed', function() {
-// 		searchBox.setBounds(map.getBounds());
-// 	});
-
-// 	var markers = [];
-// 	// Listen for the event fired when the user selects a prediction and retrieve
-// 	// more details for that place.
-// 	searchBox.addListener('places_changed', function() {
-// 		var places = searchBox.getPlaces();
-
-// 		if (places.length == 0) {
-// 			return;
-// 		}
-
-// 	// Clear out the old markers.
-// 	markers.forEach(function(marker) {
-// 		marker.setMap(null);
-// 	});
-// 	markers = [];
-
-// 		// For each place, get the icon, name and location.
-// 		var bounds = new google.maps.LatLngBounds();
-// 		places.forEach(function(place) {
-// 			if (!place.geometry) {
-// 		    	console.log("Returned place contains no geometry");
-// 		    	return;
-// 		    }
-// 		    var icon = {
-// 		    	url: place.icon,
-// 		    	size: new google.maps.Size(71, 71),
-// 		    	origin: new google.maps.Point(0, 0),
-// 		    	anchor: new google.maps.Point(17, 34),
-// 		    	scaledSize: new google.maps.Size(25, 25)
-// 		    };
-
-// 		    // Create a marker for each place.
-// 		    markers.push(new google.maps.Marker({
-// 		    	map: map,
-// 		    	icon: icon,
-// 		    	title: place.name,
-// 		    	position: place.geometry.location
-// 		    }));
-
-// 		    if (place.geometry.viewport) {
-// 		      // Only geocodes have viewport.
-// 		    	bounds.union(place.geometry.viewport);
-// 		    } else {
-// 		    	bounds.extend(place.geometry.location);
-// 		    }
-// 		});
-// 	  map.fitBounds(bounds);
-// 	});
-// }
-
-
-
-/**
- * Fetch API data
- */
-// function getAPIweer() {
-// 	var url = 'https://api.openweathermap.org/data/2.5/weather';
-// 	var apiKey ='d928735b916d301d8d9f0ea564ba901c';
-// 	var city = 'Den Haag'|| document.getElementById('pac-input').value;
-// // api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
-// 	// construct request
-// 	var request = url + '?' + 'q=' + city + '&' + 'appid=' + apiKey;
-	
-// 	// get weather forecast
-// 	fetch(request)
-
-// 	// parse to JSON format
-// 	.then(function(response) {
-// 		if(!response.ok) throw Error(response.statusText);
-// 		return response.json();
-// 	})
-// 	.then(function(response){
-// 		onAPISucces(response);
-		
-// 	})
-// 	// render weather per day
-// 	// .then(function(response) {
-// 	// 	console.log(response);
-// 	// 	// render weatherCondition
-// 	// 	onAPISucces(response);
-// 	// })
-	
-// 	// catch error
-// 	.catch(function (error) {
-// 		// onAPIError();
-// 		onAPIError(error);
-// 	});
-// }
-
-
-/**
- * Render weather listing
- */
-// function onAPISucces(response) {
-// 	var type = response.weather[0].description;
-// 	var degC = Math.floor(response.main.temp - 273.15);
-// 	var weatherBox = document.getElementById('weer');
-// 	weatherBox.innerHTML=degC + '&#176;C <br>' + type;
-
-
-
-	// var weatherList = response.list;
-	// var weatherBox = document.getElementById('weer');
-
-	// // for(var i=0; i< weatherList.length; i++){
-	// // 	//console.log(weatherList[i].main.temp - 273.15);
-	// // 	var weatherbox = document.getElementById('weather');
-
-	// // 	var dateTime = new Date(weatherList[i].dt_txt);
-	// 	var date = formDate(dateTime);
-	// 	var time = formTime(dateTime);
-	// 	var temp = Math.floor(weatherList.main.temp - 273.15);
-
-	// 	forecastMessage =  '<div class="forecastMoment">';
-	// 	forecastMessage +=   '<div class="date"> '+date+' </div>';
-	// 	forecastMessage +=	 '<div class="time"> '+ time +' </div>';
-	// 	forecastMessage +=	 '<div class="temp"> '+temp+'&#176;C </div>';
-	// 	forecastMessage += '</div>';
-
-	// 	weatherBox.innerHTML += forecastMessage;
-	// }
-// }
-
-/**
- * Error
- */
-// function onAPIError(response) {
-// 	console.error('Request failed', error)
-// 	var weatherBox = document.getElementById('weer');
-// 	weatherBox.className = 'hidden'; 
-// }
-
-// /**
-//  * Format date
-//  */
-// function formDate(date) {
-// 	var day = date.getDate();
-// 	var month = date.getMonth() + 1;
-// 	return day +'/'+ month;
-// }
-
-// /**
-//  * Format time
-//  */
-// function formTime(date) {
-// 	var hours = date.getHours();
-// 	if(hours<10){
-// 		hours = '0'+hours;
-// 	}
-// 	var minutes = date.getMinutes();
-// 	if(minutes < 10){
-// 		minutes = '0'+ minutes;
-// 	}
-// 	return hours +':'+ minutes;
-// }
-
-// init data stream
-// document.getElementById('getStad').onclick = function (){
-	// getAPIweer();
-	// getAPIhoreca();
-	// getAPIweer();
-
-
-// Set api token for mapbox
-
-
 // api token for openWeatherMap
 var openWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/weather';
 var openWeatherMapUrlApiKey = 'D928735b916d301d8d9f0ea564ba901c';
@@ -275,88 +74,111 @@ var x = window.matchMedia("(min-width: 768px)") //tablet > kaart met zoekbalk en
 			}),
 			'top-left'
 		);
+		map.addControl(new mapboxgl.NavigationControl()); 
 		map.on('load', function () {
-			 map.addSource('places', {
-			    'type': 'geojson',
-			    'data': {
-			      'type': 'FeatureCollection',
-			      'features': myCities
-			    }
-			  });
+			// map.addSource('places', {
+			// 	'type': 'geojson',
+			// 	'data': {
+			//     'type': 'FeatureCollection',
+			//     'features': myCities
+			//     }
+			// });
+			// //var features = myCities;
 
-			  // Add a layer showing the places.
-			  map.addLayer({
-			    'id': 'places',
-			    'type': 'symbol',
-			    'source': 'places',
-			    'layout': {
-			      'icon-image': '{icon}-15',
-			      'icon-allow-overlap': true
-			    }
-			  });
-		
-		var marker = new mapboxgl.Marker()
-			.setLngLat(features[0].geometry.coordinates)
-			.addTo(map)
-		
+			//  // Add a layer showing the places.
+			//   map.addLayer({
+			//     'id': 'places',
+			//     'type': 'symbol',
+			//     'source': 'places',
+			//     'layout': {
+			//       'icon-image': '{icon}-15',
+			//       'icon-allow-overlap': true
+			//     }
+			//   });
 
 		// Create a popup, but don't add it to the map yet.
-			var popup = new mapboxgl.Popup({
-			    closeButton: false,
-			    closeOnClick: false
-			  });
+			// var popup = new mapboxgl.Popup({
+			//     closeButton: false,
+			//     closeOnClick: false
+			// }).set Popup(new mapbox);
+			//var myMark = document.getElementsByClassName('mapboxgl-ctrl-geocoder--input')
+			
+			// map.on('mouseenter', 'places', function (e) {
+			//     var coordinates = e.features[0].geometry.coordinates.slice();
+			//     var description = e.features[0].properties.description;
 
-			  map.on('mouseenter', 'places', function (e) {
-			    var coordinates = e.features[0].geometry.coordinates.slice();
-			    var description = e.features[0].properties.description;
+			//     // Populate the popup and set its coordinates based on the feature found.
+			//     popup.setLngLat(coordinates)
+			//          .setHTML(description)
+			//          .addTo(map);
+			// });
 
-			    // Populate the popup and set its coordinates based on the feature found.
-			    popup.setLngLat(coordinates)
-			         .setHTML(description)
-			         .addTo(map);
-			  });
-
-			  map.on('mouseleave', 'places', function () {
-			    popup.remove();
-			  });
-		})
+			// map.on('mouseleave', 'places', function () {
+			//     popup.remove();
+			// });
+		});
 }
 
 var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk en weer met popup met temperatuur '(niet) veilig om te landen'
 	if (x.matches) { // If media query matches
 		
+			var myCities = [
+			  {
+			    name: 'Amsterdam',
+			    coordinates: [4.895168, 52.370216],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Rotterdam',
+			    coordinates: [4.47917, 51.9225],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Nijmegen',
+			    coordinates: [5.85278, 51.8425],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Maastricht',
+			    coordinates: [5.68889, 50.84833],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Groningen',
+			    coordinates: [6.56667, 53.21917],
+			    description: 'Het is mooi weer'
+			  },
+			  {
+			    name: 'Enschede',
+			    coordinates: [6.89583, 52.21833],
+			    description: 'Het is mooi weer'
+			  },
+			];
+
 		// get weather data and plot on map
 		map.on('load', function () {
-			 map.addSource('places', {
-			    'type': 'geojson',
-			    'data': {
-			      'type': 'FeatureCollection',
-			      'features': myCities
-			    }
-			  });
+			
+			 // myCities.forEach(function(marker){
+				// var el = document.createElement('div');
+				// el.className = 'marker';
 
-			  // Add a layer showing the places.
-			  map.addLayer({
-			    'id': 'places',
-			    'type': 'symbol',
-			    'source': 'places',
-			    'layout': {
-			      'icon-image': '{icon}-15',
-			      'icon-allow-overlap': true
-			    }
-			  });
+				// new mapboxgl.Marker(el)
+				// 		.setLngLat(marker.geometry.coordinates) 
+				// 		.setPopup(new mapboxgl.Popup({offset: 25})
+				// 				.setHTML('<h3>' + myCities[0].properties.name + '</h3>' +'<p>' + myCities[0].properties.description + '</p>'))
+				// 		.addTo(map);
+				// });
 
-
-			/*async*/ function fetchData() {
+			/*async*/ //function fetchData() {
 				//const response = await fetch('cities.js');
 			    //const data = await response.json();
 
-				data.forEach(function(city) {
+				myCities.forEach(function(city) {
 				// Usually you do not want to call an api multiple times, but in this case we have to
 				// because the openWeatherMap API does not allow multiple lat lon coords in one request.
 				var request = openWeatherMapUrl + '?' + 'appid=' + openWeatherMapUrlApiKey 
-				+ '&lon=' + city.features[0].geometry.coordinates[0]/*.slice()*/ 
-				+ '&lat=' + city.features[0].geometry.coordinates[1];
+				+ '&lon=' + city.coordinates[0]/*.slice()*/ 
+				+ '&lat=' + city.coordinates[1];
 
 				// Get current weather based on cities' coordinates
 				fetch(request)
@@ -374,18 +196,35 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 					});
 					
 				});
-			}
-		
+				// Create a popup, but don't add it to the map yet.
+				var popup = new mapboxgl.Popup({
+				    closeButton: false,
+				    closeOnClick: false
+				});
+				
+				map.on('mouseenter', 'places', function (e) {
+				    var coordinates = e.myCities[0].coordinates.slice();
+				    var description = e.myCities[0].description;
+				    var name = e.myCities[0].name;
 
-			
+			    // Populate the popup and set its coordinates based on the feature found.
+			    popup.setLngLat(coordinates)
+			         .setHTML('<h3>' + name + '</h3>' +'<p>' + description + '</p>')
+			         .addTo(map);
+				});
+
+				map.on('mouseleave', 'places', function () {
+				    popup.remove();
+				});
 		});
+		
 
 		function plotImageOnMap(icon, city) {
 			map.loadImage('http://openweathermap.org/img/w/' + icon + '.png',
 			function (error, image) {
 				if (error) throw error;
-				map.addImage("weatherIcon_" + city.features[0].properties.description, image);
-				map.addSource("point_" + city.features[0].properties.description, {
+				map.addImage("weatherIcon_" + city.name, image);
+				map.addSource("point_" + city.name, {
 					type: "geojson",
 					data: {
 						type: "FeatureCollection",
@@ -393,62 +232,31 @@ var x = window.matchMedia("(min-width: 1080px)") //desktop > kaart met zoekbalk 
 							type: "Feature",
 							geometry: {
 								type: "Point",
-								coordinates: city.features[0].geometry.coordinates
+								coordinates: city.coordinates
 							}
 						}]
 					}
 				});
 				map.addLayer({
-					id: "points_" + city.features[0].properties.description,
+					id: "points_" + city.name,
 					type: "symbol",
-					source: "point_" + city.features[0].properties.description,
+					source: "point_" + city.name,
 					layout: {
-						"icon-image": "weatherIcon_" + city.features[0].properties.description,
+						"icon-image": "weatherIcon_" + city.name,
 						"icon-size": 1.3
 					}
 				});
 			}
 			);
-		}
-
-}
+		
+		};
+		
+		//.setPopup(new mapboxgl.Popup({offset: 25})
+				//.setHTML('<h3>' + myCities[0].properties.name + '</h3>' +'<p>' + myCities[0].properties.description + '</p>'))
+		
+};
 
 var x = window.matchMedia("(min-width: 1920px)") //groot scherm > kaart met zoekbalk en weer met popup met temperatuur en live-foto (of earth) van gezochte plaats
 	if (x.matches) { // If media query matches		
 
 }
-
-
-
-
-// function plotTempOnMap(temp, city) {
-// 	map.loadTemp(
-// 		// temp = Math.floor(weatherList.main.temp - 273.15),
-// 		'http://openweathermap.org/temp/' + temp,
-// 		function (error, temperature) {
-// 			if (error) throw error;
-// 			map.addTemp("weatherTemp_" + city.name, temperature);
-// 			map.addSource("point_" + city.name, {
-// 				type: "geojson",
-// 				data: {
-// 					type: "FeatureCollection",
-// 					features: [{
-// 						type: "Feature",
-// 						geometry: {
-// 							type: "Point",
-// 							coordinates: city.coordinates
-// 						}
-// 					}]
-// 				}
-// 			});
-// 			map.addLayer({
-// 				id: "points_" + city.name,
-// 				type: "symbol",
-// 				source: "point_" + city.name,
-// 				layout: {
-// 					"font-size": 12
-// 				}
-// 			});
-// 		}
-// 	);
-// }
